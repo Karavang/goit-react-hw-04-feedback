@@ -1,22 +1,28 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FeedbackOptions } from './FeedbackOptions';
 
-export default class Section extends Component {
-  render() {
-    return (
-      <div>
-        <div className="title">Please, leave feedback</div>
-        <FeedbackOptions
-          good={this.props.good}
-          bad={this.props.bad}
-          neutral={this.props.neutral}
-          handleButtonClick={this.props.handleButtonClick}
-        />
-      </div>
-    );
-  }
+export default function Section({
+  setGood,
+  setNeutral,
+  setBad,
+  handleButtonClick,
+}) {
+  return (
+    <div>
+      <div className="title">Please, leave feedback</div>
+      <FeedbackOptions
+        setGood={setGood}
+        setBad={setBad}
+        setNeutral={setNeutral}
+        handleButtonClick={handleButtonClick}
+      />
+    </div>
+  );
 }
+
 Section.propTypes = {
-  state: PropTypes.object.isRequired,
+  setGood: PropTypes.func,
+  setNeutral: PropTypes.func,
+  setBad: PropTypes.func,
+  handleButtonClick: PropTypes.func,
 };

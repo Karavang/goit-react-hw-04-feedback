@@ -1,41 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export class FeedbackOptions extends Component {
-  render() {
-    return (
-      <ul className="flexator">
-        <li>
-          <button
-            className="clickable"
-            onClick={() => this.props.handleButtonClick('good')}
-          >
-            Good
-          </button>
-        </li>
-        <li>
-          <button
-            className="clickable"
-            onClick={() => this.props.handleButtonClick('neutral')}
-          >
-            Neutral
-          </button>
-        </li>
-        <li>
-          <button
-            className="clickable"
-            onClick={() => this.props.handleButtonClick('bad')}
-          >
-            Bad
-          </button>
-        </li>
-      </ul>
-    );
-  }
-}
+export const FeedbackOptions = ({ setGood, setNeutral, setBad }) => {
+  const abobaGood = () => {
+    setGood(prevState => prevState + 1);
+  };
+  const abobaNeutral = () => {
+    setNeutral(prevState => prevState + 1);
+  };
+  const abobaBad = () => {
+    setBad(prevState => prevState + 1);
+  };
+  return (
+    <ul className="flexator">
+      <li>
+        <button className="clickable" onClick={abobaGood}>
+          Good
+        </button>
+      </li>
+      <li>
+        <button className="clickable" onClick={abobaNeutral}>
+          Neutral
+        </button>
+      </li>
+      <li>
+        <button className="clickable" onClick={abobaBad}>
+          Bad
+        </button>
+      </li>
+    </ul>
+  );
+};
 
 FeedbackOptions.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
+  setGood: PropTypes.func,
+  setNeutral: PropTypes.func,
+  setBad: PropTypes.func,
 };
