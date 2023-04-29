@@ -18,13 +18,6 @@ export default function MyClicker() {
     }));
   };
 
-  const handleButtonClick = type => {
-    const newState = { ...feedback };
-
-    newState[type] = feedback[type] + 1;
-    return newState;
-  };
-
   const pfb =
     feedback.good + feedback.neutral + feedback.bad > 0
       ? (
@@ -35,11 +28,7 @@ export default function MyClicker() {
 
   return (
     <div>
-      <Section
-        feedback={setFeedback}
-        handleButtonClick={handleButtonClick}
-        handleFeedback={handleFeedback}
-      />
+      <Section feedback={setFeedback} handleFeedback={handleFeedback} />
       <Notification
         message={'There is no feedback'}
         good={feedback.good}
