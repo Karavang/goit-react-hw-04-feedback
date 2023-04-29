@@ -1,30 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({ setGood, setNeutral, setBad }) => {
-  const abobaGood = () => {
-    setGood(prevState => prevState + 1);
-  };
-  const abobaNeutral = () => {
-    setNeutral(prevState => prevState + 1);
-  };
-  const abobaBad = () => {
-    setBad(prevState => prevState + 1);
-  };
+export const FeedbackOptions = ({ handleFeedback }) => {
   return (
     <ul className="flexator">
       <li>
-        <button className="clickable" onClick={abobaGood}>
+        <button
+          className="clickable"
+          onClick={() => {
+            handleFeedback('good');
+          }}
+        >
           Good
         </button>
       </li>
       <li>
-        <button className="clickable" onClick={abobaNeutral}>
+        <button
+          className="clickable"
+          onClick={() => {
+            handleFeedback('neutral');
+          }}
+        >
           Neutral
         </button>
       </li>
       <li>
-        <button className="clickable" onClick={abobaBad}>
+        <button
+          className="clickable"
+          onClick={() => {
+            handleFeedback('bad');
+          }}
+        >
           Bad
         </button>
       </li>

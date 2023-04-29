@@ -1,20 +1,13 @@
 import PropTypes from 'prop-types';
 import { FeedbackOptions } from './FeedbackOptions';
 
-export default function Section({
-  setGood,
-  setNeutral,
-  setBad,
-  handleButtonClick,
-}) {
+export default function Section({ handleButtonClick, handleFeedback }) {
   return (
     <div>
       <div className="title">Please, leave feedback</div>
       <FeedbackOptions
-        setGood={setGood}
-        setBad={setBad}
-        setNeutral={setNeutral}
         handleButtonClick={handleButtonClick}
+        handleFeedback={handleFeedback}
       />
     </div>
   );

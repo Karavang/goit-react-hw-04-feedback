@@ -5,38 +5,53 @@ import Section from './Section';
 import { Statistics } from './Statistics';
 
 export default function MyClicker() {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const [feedback, setFeedback] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const handleFeedback = type => {
+    setFeedback(prevState => ({
+      ...prevState,
+      [type]: prevState[type] + 1,
+    }));
+  };
 
   const handleButtonClick = type => {
-    this.setState(prevState => {
-      const newState = { ...prevState };
-      newState[type] = prevState[type] + 1;
-      return newState;
-    });
+    const newState = { ...feedback };
+
+    newState[type] = feedback[type] + 1;
+    return newState;
   };
 
   const pfb =
-    good + neutral + bad > 0
-      ? ((good / (good + neutral + bad)) * 100).toFixed(2)
+    feedback.good + feedback.neutral + feedback.bad > 0
+      ? (
+          (feedback.good / (feedback.good + feedback.neutral + feedback.bad)) *
+          100
+        ).toFixed(2)
       : 0;
 
   return (
     <div>
       <Section
-        setGood={setGood}
-        setBad={setBad}
-        setNeutral={setNeutral}
+        feedback={setFeedback}
         handleButtonClick={handleButtonClick}
+        handleFeedback={handleFeedback}
       />
       <Notification
         message={'There is no feedback'}
-        good={good}
-        neutral={neutral}
-        bad={bad}
+        good={feedback.good}
+        neutral={feedback.neutral}
+        bad={feedback.bad}
       />
-      <Statistics good={good} neutral={neutral} bad={bad} total={pfb} />
+      <Statistics
+        good={feedback.good}
+        neutral={feedback.neutral}
+        bad={feedback.bad}
+        total={pfb}
+      />
     </div>
   );
 }
